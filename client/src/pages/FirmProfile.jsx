@@ -157,7 +157,7 @@ function OverviewTab({ firm, changes, flags, keyPersons, snapshot, crd }) {
             {keyPersons.map((p) => (
               <div key={p.id} className="px-4 py-2 flex justify-between text-sm">
                 <span className="text-gray-200">{p.full_name}</span>
-                <span className="text-gray-500">{p.role}{p.ownership_pct ? ` (${fmtPct(p.ownership_pct / 100)})` : ""}</span>
+                <span className="text-gray-500">{p.role}{p.ownership_pct ? ` (${fmtPct(p.ownership_pct)})` : ""}</span>
               </div>
             ))}
           </div>
@@ -237,7 +237,7 @@ function ChangesTab({ changes }) {
   return (
     <div>
       <div className="flex gap-2 mb-4">
-        {["all", "MATERIAL", "MODERATE", "MINOR"].map((f) => (
+        {["all", "HIGH", "MEDIUM", "LOW"].map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
@@ -433,7 +433,7 @@ function HoldingsTab({ holdings, snapshot }) {
                 <td className="py-2 pr-4 text-gray-500 font-mono text-xs">{h.cusip || "-"}</td>
                 <td className="py-2 pr-4 text-right text-gray-300">{fmtAUM(h.market_value)}</td>
                 <td className="py-2 pr-4 text-right text-gray-400">{fmtNum(h.shares)}</td>
-                <td className="py-2 text-right text-gray-400">{h.weight ? fmtPct(h.weight) : "-"}</td>
+                <td className="py-2 text-right text-gray-400">{h.weight != null ? `${h.weight.toFixed(2)}%` : "-"}</td>
               </tr>
             ))}
           </tbody>

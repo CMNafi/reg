@@ -26,7 +26,7 @@ export function fmtDate(dateStr) {
 
 export function fmtPct(value) {
   if (value == null) return "N/A";
-  return `${(value * 100).toFixed(1)}%`;
+  return `${Number(value).toFixed(1)}%`;
 }
 
 const SEVERITY_COLORS = {
